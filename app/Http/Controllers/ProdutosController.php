@@ -56,8 +56,6 @@ class ProdutosController extends AppBaseController
     public function store(CreateProdutosRequest $request)
     {
         $input = $request->all();
-        if($input['quantidade'] > 0)
-            $input['situacao'] = true;
 
         $produtos = $this->produtosRepository->create($input);
 
@@ -123,10 +121,6 @@ class ProdutosController extends AppBaseController
 
             return redirect(route('produtos.index'));
         }
-
-        if($request->input('quantidade') > 0)
-            $request->merge(['situacao' => true]);
-        else $request->merge(['situacao' => false]);
 
         $produtos = $this->produtosRepository->update($request->all(), $id);
 
