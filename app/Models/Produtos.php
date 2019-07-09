@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -17,7 +18,7 @@ class Produtos extends Model
 
     public $table = 'produtos';
     protected $id = 'id';
-    protected $fillable = ['nome', 'valor', 'quantidade'];
+    protected $fillable = ['nome', 'valor', 'quantidade', 'situacao'];
 
     protected $dates = ['deleted_at'];
 
@@ -36,8 +37,26 @@ class Produtos extends Model
      * @var array
      */
     public static $rules = [
-        
+        'nome'       => 'required|unique:produtos,nome|max:200',
+        'valor'      => 'required',
+        'quantidade' => 'required'
     ];
 
+    public static $rulesUpdate = [
+        'valor'      => 'required',
+        'quantidade' => 'required'
+    ];
+
+    public function getFSituacaoAttribute(){
+        return ($this->situacao)?'Disponivel':'Indisponivel';
+    }
+
+    public function getDataCriacaoAttribute(){
+        return Carbon::parse($this->created_at)->format('d/m/Y H:i:s');
+    }
+
+    public function getDataAtualizacaoAttribute(){
+        return Carbon::parse($this->updated_at)->format('d/m/Y H:i:s');
+    }
     
 }
