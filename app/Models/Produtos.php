@@ -78,7 +78,7 @@ class Produtos extends Model
      * @return string
      */
     public function getDataCriacaoAttribute(){
-        return Carbon::parse($this->created_at)->format('d/m/Y H:i:s');
+        return Carbon::parse($this->created_at)->format('d/m/Y \à\s H:i:s');
     }
 
     /**
@@ -86,7 +86,7 @@ class Produtos extends Model
      * @return string
      */
     public function getDataAtualizacaoAttribute(){
-        return Carbon::parse($this->updated_at)->format('d/m/Y H:i:s');
+        return Carbon::parse($this->updated_at)->format('d/m/Y \à\s H:i:s');
     }
 
     public function pedidos(){

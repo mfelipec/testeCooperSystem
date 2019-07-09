@@ -2,9 +2,19 @@
     <div class="box-body">
         <!-- Id Field -->
         <div class="form-group">
-            {!! Form::label('id', 'Id:') !!}
-            <p>{!! $pedidos->id !!}</p>
+            <div class="row">
+                <div class="col-xs-2">
+                    {!! Form::label('id', 'Id:') !!}
+                    <p>{!! $pedidos->id !!}</p>
+                </div>
+
+                <div class="col-xs-5">
+                    <label>Situação do pedido</label>
+                    <p>{!! $pedidos->situacao !!}</p>
+                </div>
+            </div>
         </div>
+
 
         <div class="row">
             <div class="col-xs-6">
@@ -63,14 +73,14 @@
 
         <!-- Created At Field -->
         <div class="form-group">
-            {!! Form::label('created_at', 'Created At:') !!}
-            <p>{!! $pedidos->created_at !!}</p>
+            {!! Form::label('created_at', 'Data do pedido:') !!}
+            <p>{!! $pedidos->data_hora_criacao !!}</p>
         </div>
 
         <!-- Updated At Field -->
         <div class="form-group">
-            {!! Form::label('updated_at', 'Updated At:') !!}
-            <p>{!! $pedidos->updated_at !!}</p>
+            {!! Form::label('updated_at', 'Ultima atualização do pedido:') !!}
+            <p>{!! $pedidos->data_atualizacao !!}</p>
         </div>
     </div>
 </div>

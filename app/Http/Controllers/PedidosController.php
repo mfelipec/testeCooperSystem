@@ -64,7 +64,7 @@ class PedidosController extends AppBaseController
 
         $pedidos = $this->pedidosRepository->create($input);
 
-        Flash::success('Pedidos saved successfully.');
+        Flash::success('Pedido salvo com sucesso.');
 
         return redirect(route('pedidos.index'));
     }
@@ -81,7 +81,7 @@ class PedidosController extends AppBaseController
         $pedidos = Pedidos::where('id', $id)->with('produtos')->first();
 
         if (empty($pedidos)) {
-            Flash::error('Pedidos not found');
+            Flash::error('Pedido não localizado');
 
             return redirect(route('pedidos.index'));
         }
@@ -98,15 +98,17 @@ class PedidosController extends AppBaseController
      */
     public function edit($id)
     {
-        $pedidos = $this->pedidosRepository->find($id);
+        $pedidos  = Pedidos::where('id', $id)->with('produtos')->first();
+        $produtos = Produtos::pluck('nome', 'id');
+        $situacao = [1 => 'Pendente de envio', 2 => 'Enviado', 3 => 'Entregue'];
 
         if (empty($pedidos)) {
-            Flash::error('Pedidos not found');
+            Flash::error('Pedido não localizado');
 
             return redirect(route('pedidos.index'));
         }
 
-        return view('pedidos.edit')->with('pedidos', $pedidos);
+        return view('pedidos.edit', compact(['pedidos', 'produtos', 'situacao']));
     }
 
     /**
@@ -122,14 +124,14 @@ class PedidosController extends AppBaseController
         $pedidos = $this->pedidosRepository->find($id);
 
         if (empty($pedidos)) {
-            Flash::error('Pedidos not found');
+            Flash::error('Pedido não localizado');
 
             return redirect(route('pedidos.index'));
         }
 
         $pedidos = $this->pedidosRepository->update($request->all(), $id);
 
-        Flash::success('Pedidos updated successfully.');
+        Flash::success('Pedido atualizado com sucesso.');
 
         return redirect(route('pedidos.index'));
     }
@@ -148,14 +150,14 @@ class PedidosController extends AppBaseController
         $pedidos = $this->pedidosRepository->find($id);
 
         if (empty($pedidos)) {
-            Flash::error('Pedidos not found');
+            Flash::error('Pedido não localizado');
 
             return redirect(route('pedidos.index'));
         }
 
         $this->pedidosRepository->delete($id);
 
-        Flash::success('Pedidos deleted successfully.');
+        Flash::success('Pedido excluído com sucesso.');
 
         return redirect(route('pedidos.index'));
     }

@@ -21,3 +21,22 @@
        </div>
    </div>
 @endsection
+
+
+@section('scripts')
+    <script>
+        $('select').on('change', function(){
+            var idProduto = this.value;
+            $.ajax({
+                url: '{{ route('produtos.dados') }}',
+                type: 'GET',
+                data: {id: idProduto},
+                success: function (data) {
+                    $("#qtd_estoque").empty().append(data.estoque);
+                    $("#valor_unitario_label").empty().append(data.valor);
+                    $("#valor_unitario").val(data.valor);
+                }
+            });
+        });
+    </script>
+@endsection

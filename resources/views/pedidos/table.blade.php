@@ -8,7 +8,7 @@
                 <th width="10%">Data do Pedido</th>
                 <th width="10%">Sit. do Pedido</th>
                 <th width="25%">Despachante</th>
-                <th width="10%">Action</th>
+                <th width="10%">Ações</th>
             </tr>
         </thead>
         <tbody>
