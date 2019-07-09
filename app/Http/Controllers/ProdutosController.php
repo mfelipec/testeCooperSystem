@@ -56,12 +56,10 @@ class ProdutosController extends AppBaseController
     public function store(CreateProdutosRequest $request)
     {
         $input = $request->all();
-        if($input['quantidade'] > 0)
-            $input['situacao'] = true;
 
         $produtos = $this->produtosRepository->create($input);
 
-        Flash::success('Produtos saved successfully.');
+        Flash::success('Produto salvo com sucesso.');
 
         return redirect(route('produtos.index'));
     }
@@ -78,7 +76,7 @@ class ProdutosController extends AppBaseController
         $produtos = $this->produtosRepository->find($id);
 
         if (empty($produtos)) {
-            Flash::error('Produtos not found');
+            Flash::error('Produto não localizado');
 
             return redirect(route('produtos.index'));
         }
@@ -98,7 +96,7 @@ class ProdutosController extends AppBaseController
         $produtos = $this->produtosRepository->find($id);
 
         if (empty($produtos)) {
-            Flash::error('Produtos not found');
+            Flash::error('Produto não localizado');
 
             return redirect(route('produtos.index'));
         }
@@ -119,18 +117,14 @@ class ProdutosController extends AppBaseController
         $produtos = $this->produtosRepository->find($id);
 
         if (empty($produtos)) {
-            Flash::error('Produtos not found');
+            Flash::error('Produto não localizado');
 
             return redirect(route('produtos.index'));
         }
 
-        if($request->input('quantidade') > 0)
-            $request->merge(['situacao' => true]);
-        else $request->merge(['situacao' => false]);
-
         $produtos = $this->produtosRepository->update($request->all(), $id);
 
-        Flash::success('Produtos updated successfully.');
+        Flash::success('Produto atualizado com sucesso.');
 
         return redirect(route('produtos.index'));
     }
@@ -149,15 +143,34 @@ class ProdutosController extends AppBaseController
         $produtos = $this->produtosRepository->find($id);
 
         if (empty($produtos)) {
-            Flash::error('Produtos not found');
+            Flash::error('Produto não localizado');
 
             return redirect(route('produtos.index'));
         }
 
         $this->produtosRepository->delete($id);
 
-        Flash::success('Produtos deleted successfully.');
+        Flash::success('Produto excluído com sucesso.');
 
         return redirect(route('produtos.index'));
+    }
+
+    /**
+     * Busco algumas informacoes basicas referente ao produto
+     * para poder verificar preço e quantidade em estoque.
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function getDados(Request $request){
+        $idProduto = $request->id;
+
+        $produto = Produtos::find($idProduto);
+        $dados = [
+            'estoque' => $produto->quantidade,
+            'valor'   => $produto->valor
+        ];
+
+        return $dados;
     }
 }
