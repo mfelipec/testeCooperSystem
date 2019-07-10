@@ -15,7 +15,7 @@ Não existe de cadastro de usuário e, portanto, não existe login.
 
 ## Dependencias
 
-Tenha certeza de ter instalado o composer, php e as extencoes do php necessarias.
+Tenha certeza de ter instalado o composer, php e as extenções do php necessárias.
 - PHP >= 7.1.3
 - BCMath PHP Extension
 - Ctype PHP Extension
@@ -40,6 +40,26 @@ Caso esteja utilizando Linux ou Mac OS, certifique-se que o arquivo *artisan* po
 Execute o seguinte comando para tanto:
 ```
 chmod 755 artisan
+```
+
+Depois, copie o arquivo .env.example para .env
+```
+cp .env.example .env
+```
+
+Após criar o .env, abra-o e edite o arquivo de acordo com suas configurações de banco.
+...
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=homestead
+DB_USERNAME=homestead
+DB_PASSWORD=secret
+...
+
+Depois, gere a chave de segurança com
+```
+php artisan key:generate
 ```
 
 Após a instalação do laravel, deve-se carregar o banco. Para criar o banco use:
