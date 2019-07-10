@@ -20,6 +20,9 @@ No diretório do aplicativo, onde se encontram os fontes entrar com o comando:
 composer install 
 ```
 
+Caso não possua o composer instalado, deve-se seguir os passos contidos na documentação em [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
+
 Caso esteja utilizando Linux ou Mac OS, certifique-se que o arquivo *artisan* possua permissão de execução.
 Execute o seguinte comando para tanto:
 ```
