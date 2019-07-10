@@ -76,7 +76,7 @@ class Pedidos extends Model
          * Ao criar um novo pedido eu subtraio a quantidade solicitada da tabela de produtos
          */
         self::created(function($model){
-            $produtos = Produtos::find($model->produto_id);
+            $produtos = Produtos::where('id', $model->produto_id)->first();
             $produtos->quantidade -= $model->quantidade;
             $produtos->save();
         });
