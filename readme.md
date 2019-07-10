@@ -13,15 +13,28 @@ Não existe de cadastro de usuário e, portanto, não existe login.
 
 ![](public/img/preview.png)
 
+## Dependencias
+
+Tenha certeza de ter instalado o composer, php e as extencoes do php necessarias.
+- PHP >= 7.1.3
+- BCMath PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
+- Mbstring PHP Extension
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+
+Caso não possua o composer instalado, deve-se seguir os passos contidos na documentação em [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
+
 ## Instalação
 
 No diretório do aplicativo, onde se encontram os fontes entrar com o comando:
 ```
 composer install 
 ```
-
-Caso não possua o composer instalado, deve-se seguir os passos contidos na documentação em [https://getcomposer.org/download/](https://getcomposer.org/download/)
-
 
 Caso esteja utilizando Linux ou Mac OS, certifique-se que o arquivo *artisan* possua permissão de execução.
 Execute o seguinte comando para tanto:
